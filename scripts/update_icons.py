@@ -1,11 +1,19 @@
 from notion_client import Client
+from dotenv import load_dotenv
 import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize the Notion client with your integration token
 notion = Client(auth=os.getenv("NOTION_INTEGRATION_TOKEN"))
 
 # Define your database ID
 database_id = os.getenv("DATABASE_ID")
+
+# Print environment variables for debugging
+print(f"Using NOTION_INTEGRATION_TOKEN: {os.getenv('NOTION_INTEGRATION_TOKEN')}")
+print(f"Using DATABASE_ID: {database_id}")
 
 # Define the icon to be used (checkmark square emoji)
 icon = "🗹"
