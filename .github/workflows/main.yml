@@ -27,4 +27,4 @@ jobs:
         env:
           NOTION_INTEGRATION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
-        run: python update_icons.py
+        run: python scripts/update_icons.py
