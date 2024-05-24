@@ -18,9 +18,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: List root directory contents
-        run: ls -R /
-
       - name: List current working directory contents
         run: ls -R .
 
