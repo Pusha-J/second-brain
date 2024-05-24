@@ -25,8 +25,9 @@ We developed a script to update icons for all tasks in my Notion database using 
 2. **Icon Updates Based on Note Type**:
    - In the notes database, differentiate between types of notes (e.g., text notes, video notes).
    - Apply specific icons based on the note type (e.g., check if there's a URL attached, and if the URL contains "youtube" for video notes).
-
-3. **Trigger Workflow on Database Changes**:
+3. **Tag updates Based on Note Types**
+   - I use tags as a property on my database items. The script should automatically tag items based on criteria that I define, like tags for specific url domains (reddit tag for reddit, youtube tag for youtube etc.)
+4. **Trigger Workflow on Database Changes**:
    - Explore ways to trigger this workflow whenever a change is detected in the Notion database, such as when a new item is added to the notes or tasks databases.
 
 ### Reference:
