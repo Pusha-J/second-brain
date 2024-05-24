@@ -16,15 +16,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.x
+          python-version: '3.x'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install notion-client
+          pip install notion-client python-dotenv
+
+      - name: List files for debugging
+        run: ls -R
 
       - name: Run the script
+        working-directory: ./scripts
+        run: python update_icons.py
         env:
           NOTION_INTEGRATION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
           DATABASE_ID: ${{ secrets.DATABASE_ID }}
-        run: python scripts/update_icons.py
