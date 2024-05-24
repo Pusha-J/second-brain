@@ -1,1 +1,34 @@
-not gonna work
+name: Update Notion Icons
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour, adjust as needed
+  workflow_dispatch:
+
+jobs:
+  update_icons:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: List root directory contents
+        run: ls -R /
+
+      - name: List current working directory contents
+        run: ls -R .
+
+      - name: List scripts directory contents
+        run: ls -R scripts
+
+      - name: Run the script
+        run: python scripts/update_icons.py
+        env:
+          NOTION_INTEGRATION_TOKEN: ${{ secrets.NOTION_INTEGRATION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
