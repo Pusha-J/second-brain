@@ -30,9 +30,7 @@ def update_page_icon(page_id, icon):
 
 # Query the database to get all items
 response = notion.databases.query(
-    **{
-        "database_id": database_id
-    }
+    database_id
 )
 
 # Iterate over the results and update the icons
