@@ -1,7 +1,6 @@
 from notion_client import Client
 from dotenv import load_dotenv
 import os
-from collections import Counter
 
 # Load environment variables from .env file
 load_dotenv()
@@ -26,21 +25,20 @@ def update_page_icon(page_id, icon):
         }
     )
 
-# Query the database to get the last 5 items
-response = notion.databases.query(database_id=database_id, page_size=5)
+# Function to find the first icon in the database
+def find_first_icon(database_id):
+    response = notion.databases.query(database_id=database_id)
+    for result in response['results']:
+        if 'icon' in result and result['icon'] is not None:
+            if 'emoji' in result['icon']:
+                return result['icon']['emoji']
+    return None
 
-# Extract icons from the last 5 tasks
-icons = []
-for result in response['results']:
-    if 'icon' in result and result['icon'] is not None:
-        if 'emoji' in result['icon']:
-            icons.append(result['icon']['emoji'])
+# Find the first icon in the database
+first_icon = find_first_icon(database_id)
 
-# Determine the most frequently used icon
-most_common_icon = Counter(icons).most_common(1)[0][0] if icons else None
-
-if most_common_icon:
-    print(f"Most common icon: {most_common_icon}")
+if first_icon:
+    print(f"First found icon: {first_icon}")
     
     # Query the database to get all items
     response = notion.databases.query(database_id=database_id)
@@ -48,8 +46,8 @@ if most_common_icon:
     # Iterate over the results and update the icons
     for result in response['results']:
         page_id = result['id']
-        update_page_icon(page_id, most_common_icon)
+        update_page_icon(page_id, first_icon)
 
     print("Icons updated successfully.")
 else:
-    print("No icons found in the last 5 tasks.")
+    print("No icons found in the database.")
