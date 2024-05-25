@@ -1,5 +1,7 @@
 # second-brain
 
+## To-Dos:
+   - add throttling to icon update script so we don't hit Notion API limits of 3 request per second
 
 ## We will add more functionality to this by prompting notion with this prompt:
 
